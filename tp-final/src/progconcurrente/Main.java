@@ -16,6 +16,9 @@ public class Main {
 //    private static JFileChooser fileChooser = new JFileChooser();
 //    private static int open_result;
     public static void main(String[] args) {
+
+        XMLPetriNetReader petriNetReader = new XMLPetriNetReader();
+
         JFrame frame = new JFrame("Simulate your fantastic XML Petri Net in two steps!!! By: CastroDetkeTeam Inc.");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
@@ -50,6 +53,9 @@ public class Main {
                 System.out.println("*** Red seleccionada: " + selectedFile.getName());
                 System.out.println("2) Para comenzar la simulacion, presione \"Comenzar\"");
                 //TODO implementar creacion de objetos e inicializacion de simulacion.
+                petriNetReader.setfXMLFile(selectedFile);
+
+
             }
         });
 
@@ -59,6 +65,7 @@ public class Main {
 
         startBtn.addActionListener(e -> {
             //TODO Implementar lanzamiento de simulacion.
+            petriNetReader.getDataXML();
         });
 
 //        controlPanel.setPreferredSize(new Dimension(startBtn.getWidth()+stopBtn.getWidth(),40));
