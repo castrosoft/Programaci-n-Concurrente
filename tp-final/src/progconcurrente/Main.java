@@ -3,48 +3,92 @@ package progconcurrente;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.geom.FlatteningPathIterator;
 import java.io.File;
 import java.io.PrintStream;
 
+import static java.lang.Thread.sleep;
+
 public class Main {
 
+//    private static JFileChooser fileChooser = new JFileChooser();
+//    private static int open_result;
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Simulate your fantastic XML Petri Net in two steps!!!");
+        JFrame frame = new JFrame("Simulate your fantastic XML Petri Net in two steps!!! By: CastroDetkeTeam Inc.");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
+        frame.setResizable(false);
 
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileNameExtensionFilter("PIPE File","xml"));
+
+        JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        mainPanel.setSize(800,40);
+
+        JPanel selectPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
         JLabel pathLabel = new JLabel("Red: ");
+
+        JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
         JButton selectBtn = new JButton("Seleccionar RdP");
-        pathLabel.setSize(550,30);
-        selectBtn.setSize(50, 30);
+        selectBtn.setToolTipText("<html>Permite seleccionar un archivo XML<br>generado por PIPE</html>");
 
-        panel.add(selectBtn);
-        panel.add(pathLabel);
-        panel.setVisible(true);
 
-        frame.add( panel, BorderLayout.NORTH );
+        JButton startBtn = new JButton("Comenzar");
+        startBtn.setToolTipText("Comienza la simulacion de la red.");
+        JButton stopBtn = new JButton("Detener");
+        stopBtn.setToolTipText("<html>Detiene la simulacion y reinicia la<br>red seleccionada.</html>");
+
+        selectBtn.addActionListener(e -> {
+            int open_result = fileChooser.showOpenDialog(null);
+            if (open_result == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
+                pathLabel.setText("Red: " + selectedFile.getName());
+                System.out.println("*** Red seleccionada: " + selectedFile.getName());
+                System.out.println("2) Para comenzar la simulacion, presione \"Comenzar\"");
+                //TODO implementar creacion de objetos e inicializacion de simulacion.
+            }
+        });
+
+        stopBtn.addActionListener(e -> {
+            //TODO Implementar parar simulacion.
+        });
+
+        startBtn.addActionListener(e -> {
+            //TODO Implementar lanzamiento de simulacion.
+        });
+
+//        controlPanel.setPreferredSize(new Dimension(startBtn.getWidth()+stopBtn.getWidth(),40));
+        selectPanel.setPreferredSize(new Dimension(580,40));
+
+        selectPanel.add(selectBtn);
+        selectPanel.add(pathLabel);
+
+        controlPanel.add(startBtn);
+        controlPanel.add(stopBtn);
+
+        selectPanel.setVisible(true);
+        controlPanel.setVisible(true);
+
+        mainPanel.add(selectPanel);
+        mainPanel.add(controlPanel);
+
+        frame.add( mainPanel, BorderLayout.NORTH );
         JTextArea ta = new JTextArea();
+        ta.setEnabled(false);
+        ta.setDisabledTextColor(Color.BLACK);
         PrintStream ps = new PrintStream(new TextAreaOutputStream(ta) );
         System.setOut( ps );
         System.setErr( ps );
 
 
-        frame.add( new JScrollPane( ta )  );
+        frame.add( new JScrollPane(ta));
 
         frame.setVisible(true);
-
-        final JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileFilter(new FileNameExtensionFilter("PIPE File","xml"));
-        int result = fileChooser.showOpenDialog(panel);
-
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            pathLabel.setText("Red: " + selectedFile.getName());
-            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-            //Aca deberiamos crear todos los objetos que dependan del XML.
-
-        }
+        System.out.println("1) Por favor seleccione una red en formato XML realizada en PIPE.");
     }
 }
 
