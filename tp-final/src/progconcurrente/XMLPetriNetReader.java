@@ -40,7 +40,7 @@ public class XMLPetriNetReader {
     //     Utilizar como guia el metodo "getDataXML".
     public void getDataXML() {
 
-        try {
+        /*try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXMLFile);
@@ -64,7 +64,7 @@ public class XMLPetriNetReader {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 
