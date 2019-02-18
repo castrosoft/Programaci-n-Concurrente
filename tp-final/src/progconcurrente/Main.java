@@ -1,13 +1,9 @@
-package castro.detke;
-
-import org.xml.sax.SAXException;
+package progconcurrente;
 
 import javax.swing.*;
-import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.io.File;
 import java.io.PrintStream;
-import java.io.*;
 
 public class Main {
 
