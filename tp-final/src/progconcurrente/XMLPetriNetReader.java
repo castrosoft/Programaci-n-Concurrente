@@ -129,36 +129,6 @@ public class XMLPetriNetReader {
 
     public void getPolicies(){} //ToDo: Policies:  Implementar, reemplazar void por lo que corresponda.
 
-//    //ToDo: All: Implementar cada uno de los metodos de arriba para extraer los datos que se le pasaran al Modelo.
-//    //     Utilizar como guia el metodo "getDataXML".
-//    public void getDataXML() {
-//
-//        try {
-//            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-//            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-//            Document doc = dBuilder.parse(fXMLFile);
-//
-//            System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
-//            System.out.println();
-//
-//            NodeList nList = doc.getElementsByTagName("place");
-//
-//            for (int i = 0; i < nList.getLength(); i++) {
-//
-//                Node nNode = nList.item(i);
-//
-//                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-//                    Element eElement = (Element) nNode;
-//                    System.out.println("Plaza#: " + eElement.getAttribute("id"));
-//                    System.out.println("Valor Plaza: " + (eElement.getElementsByTagName("value").item(1).getTextContent()).substring(8));
-//                    System.out.println();
-//                }
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
 
 }
