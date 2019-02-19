@@ -24,7 +24,7 @@ public class Main {
         frame.setSize(800, 600);
         frame.setResizable(false);
 
-        JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser("../");
         fileChooser.setFileFilter(new FileNameExtensionFilter("PIPE File","xml"));
 
         JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -65,7 +65,7 @@ public class Main {
 
         startBtn.addActionListener(e -> {
             //TODO Implementar lanzamiento de simulacion.
-            petriNetReader.getDataXML();
+            petriNetReader.calculateIncidenceMatrix();
         });
 
 //        controlPanel.setPreferredSize(new Dimension(startBtn.getWidth()+stopBtn.getWidth(),40));
