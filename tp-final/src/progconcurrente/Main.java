@@ -3,9 +3,6 @@ package progconcurrente;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.FlatteningPathIterator;
 import java.io.File;
 import java.io.PrintStream;
 
@@ -44,6 +41,7 @@ public class Main {
         startBtn.setToolTipText("Comienza la simulacion de la red.");
         JButton stopBtn = new JButton("Detener");
         stopBtn.setToolTipText("<html>Detiene la simulacion y reinicia la<br>red seleccionada.</html>");
+        JCheckBox verbose = new JCheckBox("Verbose Mode");
 
         selectBtn.addActionListener(e -> {
             int open_result = fileChooser.showOpenDialog(null);
@@ -65,17 +63,21 @@ public class Main {
 
         startBtn.addActionListener(e -> {
             //TODO Implementar lanzamiento de simulacion.
-            petriNetReader.calculateIncidenceMatrix();
+            petriNetReader.readIncidenceMatrix(verbose.isSelected());
+            petriNetReader.readInhibitions(verbose.isSelected());
+            petriNetReader.readMarking(verbose.isSelected());
         });
 
 //        controlPanel.setPreferredSize(new Dimension(startBtn.getWidth()+stopBtn.getWidth(),40));
-        selectPanel.setPreferredSize(new Dimension(580,40));
+        selectPanel.setPreferredSize(new Dimension(465,40));
 
         selectPanel.add(selectBtn);
         selectPanel.add(pathLabel);
 
+        controlPanel.add(verbose);
         controlPanel.add(startBtn);
         controlPanel.add(stopBtn);
+
 
         selectPanel.setVisible(true);
         controlPanel.setVisible(true);
