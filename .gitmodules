@@ -1,0 +1,3 @@
+[submodule "petri-net-console-sim"]
+	path = petri-net-console-sim
+	url = https://github.com/ramirofd/petri-net-console-sim
